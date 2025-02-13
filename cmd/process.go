@@ -2,9 +2,15 @@ package cmd
 
 import (
 	"fmt"
+	"syscall"
 
 	"github.com/spf13/cobra"
 )
+
+func killProcess(pid int) error {
+	// Send SIGKILL to the specified PID
+	return syscall.Kill(pid, syscall.SIGKILL)
+}
 
 func ProcessCmd() *cobra.Command {
 	var pid int
